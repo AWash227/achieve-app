@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteHabit } from '../../actions/habitActions';
+import PropTypes from 'prop-types';
 import { Card, Icon, Avatar, Menu, Dropdown } from 'antd';
 
 const { Meta } = Card;
@@ -8,10 +11,10 @@ const { Meta } = Card;
 const editActionMenu = (
   <Menu>
     <Menu.Item key="0">
-      <a>Edit</a> 
+      <div>Edit</div> 
     </Menu.Item>
     <Menu.Item>
-      <a>Delete</a>
+      <div>Delete</div>
     </Menu.Item>
   </Menu>
 )
@@ -27,7 +30,7 @@ class HabitCard extends Component{
     return(
     <Card
       key={this.props.key}
-      extra={<Dropdown overlay={editActionMenu} trigger={['click']}><a onClick={this.onDeleteClick.bind(this, this.props.id)}><Icon type="more"/></a></Dropdown>}
+      extra={<Dropdown overlay={editActionMenu} trigger={['click']}><div onClick={this.onDeleteClick.bind(this, this.props._id)}><Icon type="more"/></div></Dropdown>}
       cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
       style={{ width: 300 }}
       size="default"
@@ -43,4 +46,12 @@ class HabitCard extends Component{
 
 }
 
-export default HabitCard;
+HabitCard.propTypes = {
+  deleteHabit: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = (state) => ({
+  habit: state.habit
+})
+
+export default connect(mapStateToProps, { deleteHabit })(HabitCard);

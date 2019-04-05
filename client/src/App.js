@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { Navigation } from './components/layouts';
-import { HabitCard } from './components/layouts';
+import React, { Component } from 'react';
+import { Navigation, Header } from './components/layouts';
 import Dashboard from './components/Dashboard';
 import 'antd/dist/antd.css';
 
@@ -14,8 +13,8 @@ export default class extends Component{
 
     <Provider store={store}>
       <Navigation />
+      <Header />
       <Dashboard />
-      <HabitCard />
     </Provider>
     )
   }

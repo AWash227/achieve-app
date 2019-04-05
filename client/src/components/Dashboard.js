@@ -1,33 +1,32 @@
 import React, {Component} from 'react';
 import { HabitCard } from './layouts'
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { getHabits, deleteHabit } from '../actions/habitActions';
+import { getHabits} from '../actions/habitActions';
 import PropTypes from 'prop-types';
-
-const api = 'http://localhost:4000/api/habits';
 
 class Dashboard extends Component{
   componentDidMount = () =>{
     this.props.getHabits();
   }
-  onDeleteClick = (id) => {
-    this.props.deleteItem(id);
-  }
+
 
   render(){
-    return(
-      <div>
-        {this.props.habit.habits.map((c) =>
+    const habits = this.props.habit.habits.map((c) => 
+      <div key={c._id.toString()}>
+          
         <HabitCard 
-          key={c.id} 
+          key={c.key} 
           title={c.title}
           description={c.description}
           reward={c.reward}
-          complete={c.repeat}
+          complete={c.complete}
           link={c.link}
           simplify={c.simplify} />
-        )}
+      </div>
+    )
+    return(
+      <div>
+      {habits}
       </div>
     )
   }
@@ -42,4 +41,4 @@ const mapStateToProps = (state) => ({
   habit: state.habit
 })
 
-export default connect(mapStateToProps, { getHabits, deleteHabit })(Dashboard);
+export default connect(mapStateToProps, { getHabits })(Dashboard);
