@@ -6,6 +6,8 @@ export const GET_HABITS_ERROR = 'GET_HABITS_ERROR';
 
 // Add Habit
 export const ADD_HABIT = 'ADD_HABIT';
+export const OPEN_HABIT_DRAWER = 'OPEN_HABIT_DRAWER';
+export const CLOSE_HABIT_DRAWER = 'CLOSE_HABIT_DRAWER';
 
 // Delete Habit
 export const DELETE_HABIT = 'DELETE_HABIT';

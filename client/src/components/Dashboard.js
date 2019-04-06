@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { HabitCard } from './layouts'
+import { HabitCard, HabitForm } from './layouts'
 import { connect } from 'react-redux';
 import { getHabits} from '../actions/habitActions';
 import PropTypes from 'prop-types';
@@ -11,11 +11,13 @@ class Dashboard extends Component{
 
 
   render(){
+    
     const habits = this.props.habit.habits.map((c) => 
       <div key={c._id.toString()}>
           
         <HabitCard 
           key={c.key} 
+          id={c._id}
           title={c.title}
           description={c.description}
           reward={c.reward}
@@ -27,6 +29,7 @@ class Dashboard extends Component{
     return(
       <div>
       {habits}
+      <HabitForm />
       </div>
     )
   }
