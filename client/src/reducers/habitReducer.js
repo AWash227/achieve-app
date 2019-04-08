@@ -4,10 +4,19 @@ import {
   DELETE_HABIT,
   HABITS_LOADING,
   OPEN_HABIT_DRAWER,
-  CLOSE_HABIT_DRAWER
+  CLOSE_HABIT_DRAWER,
+  UPDATE_HABIT_PROPS
 } from '../actions/types';
 const initialState = {
   habits: [],
+  newHabit: {
+    title: "",
+    description: "",
+    reward: "",
+    complete: false,
+    linkObj: "",
+    connector: ""
+  },
   loading: false,
   drawerOpen: false
 }
@@ -40,7 +49,8 @@ export default function(state = initialState, action) {
         console.log("ADD_HABIT reducer has run")
       }
       return{
-        ...state
+        ...state,
+        habits: [action.payload, ...state.habits]
       }
     case OPEN_HABIT_DRAWER:
       if(debug){
@@ -56,7 +66,10 @@ export default function(state = initialState, action) {
       return{
         ...state, drawerOpen: false
       }
-
+    case UPDATE_HABIT_PROPS:
+      return{
+        ...state, newHabit: action.payload
+      }
     // DEFAULT
     default:
       return state;

@@ -19,8 +19,8 @@ router.post("/", (req, res) => {
     description: req.body.description,
     reward: req.body.reward,
     complete: req.body.complete,
-    link: req.body.link,
-    simplify: req.body.simplify
+    linkObj: req.body.linkObj,
+    connector: req.body.connector
   });
 
   newHabit.save().then(habit => res.json(habit));

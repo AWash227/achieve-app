@@ -17,11 +17,11 @@ const HabitSchema = Schema({
   complete: {
     type: Boolean,
   },
-  link: {
+  linkObj: {
     type: String,
     required: true
   },
-  simplify: {
+  connector: {
     type: String,
     required: true
   }

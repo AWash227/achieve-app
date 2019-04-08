@@ -13,8 +13,7 @@ class Header extends Component {
       <PageHeader 
         onBack={() => null}
         title="Main"
-        subTitle="Subtitle goes here"
-        extra={<Button key="1" type="primary" onClick={() => this.props.openHabitDrawer()}>Add Goal</Button>}
+        extra={<Button key="1" type="primary" onClick={() => this.props.openHabitDrawer()}>Add Habit</Button>}
       />
       <HabitForm drawerOpen={this.props.habit.drawerOpen} drawerClose={this.props.habit.drawerClose}/>
       </div>
