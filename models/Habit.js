@@ -25,7 +25,12 @@ const HabitSchema = Schema({
     type: String,
     required: true
   },
+  goal: 
+  {
+    type: Schema.Types.ObjectId,
+    ref: 'Goal'
+  },
 })
 
-const Habit = mongoose.model("habit", HabitSchema);
+const Habit = mongoose.model("habit", HabitSchema, 'habits');
 export default Habit;

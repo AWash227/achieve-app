@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navigation, Header } from './components/layouts';
-import Dashboard from './components/Dashboard';
+import { Navigation, Header } from './components';
+import { Dashboard } from './components/layouts';
 import 'antd/dist/antd.css';
 import { Layout } from 'antd';
 
@@ -14,8 +14,8 @@ export default class extends Component{
     <Provider store={store}>
       <Header />
       <Layout>
-        <Navigation/>
-        <Dashboard/>
+        <Navigation />
+        <Dashboard />
       </Layout>
     </Provider>
     )

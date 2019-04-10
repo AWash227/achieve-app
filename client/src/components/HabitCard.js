@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteHabit} from '../../actions/habitActions';
+import { deleteHabit } from '../actions/habitActions';
 import PropTypes from 'prop-types';
 import { Card, Icon, Tooltip, Button, Popover } from 'antd';
 

@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import habits from './routes/api/Habits';
+import goals from './routes/api/Goals';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 4000;
 
 app.use('/api/habits', habits);
+app.use('/api/goals', goals)
 
 app.get('/', (req, res) => {
   res.send('Hello World');

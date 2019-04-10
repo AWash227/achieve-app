@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { Layout, List } from 'antd';
-import { HabitCard, HabitForm } from './layouts'
+import { HabitCard, HabitForm } from '../components';
 import { connect } from 'react-redux';
 import { getHabits} from '../actions/habitActions';
 import PropTypes from 'prop-types';
 
-class Dashboard extends Component{
+class HabitList extends Component{
   componentDidMount = () =>{
     this.props.getHabits();
   }
@@ -41,7 +41,7 @@ class Dashboard extends Component{
   }
 }
 
-Dashboard.propTypes = {
+HabitList.propTypes = {
   getHabits: PropTypes.func.isRequired,
   habit: PropTypes.object.isRequired
 }
@@ -50,4 +50,4 @@ const mapStateToProps = (state) => ({
   habit: state.habit
 })
 
-export default connect(mapStateToProps, { getHabits })(Dashboard);
+export default connect(mapStateToProps, { getHabits })(HabitList);

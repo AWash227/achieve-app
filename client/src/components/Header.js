@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { PageHeader, Button } from 'antd';
-import { HabitForm } from '../layouts';
+import { HabitForm } from '../components';
 import { connect } from 'react-redux';
-import { openHabitDrawer } from '../../actions/habitActions';
+import { openHabitDrawer } from '../actions/habitActions';
 import PropTypes from 'prop-types';
 
 class Header extends Component {

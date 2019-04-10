@@ -1,11 +1,5 @@
-import Navigation from './Navigation';
-import HabitCard from './HabitCard';
-import Header from './Header';
-import HabitForm from './HabitForm';
+import Dashboard from './Dashboard';
 
 export {
-  Navigation,
-  HabitCard,
-  Header,
-  HabitForm
+  Dashboard
 }

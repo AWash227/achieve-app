@@ -1,3 +1,4 @@
+// HABITS ----------------------------------------------
 // Get Habits
 export const GET_HABITS = 'GET_HABITS';
 export const GET_HABITS_REQUEST = 'GET_HABITS_REQUEST';
@@ -14,3 +15,24 @@ export const UPDATE_HABIT_PROPS = 'UPDATE_HABIT_PROPS';
 export const DELETE_HABIT = 'DELETE_HABIT';
 
 export const HABITS_LOADING = 'HABITS_LOADING';
+
+// GOALS -------------------------------------------
+// Get Goals
+export const GET_GOALS = 'GET_GOALS';
+export const GET_GOALS_REQUEST = 'GET_GOALS_REQUEST';
+export const GET_GOALS_SUCCESS = 'GET_GOALS_SUCCESS';
+export const GET_GOALS_ERROR = 'GET_GOALS_ERROR';
+
+// Add Goal
+export const ADD_GOAL = 'ADD_GOAL';
+export const OPEN_GOAL_DRAWER = 'OPEN_GOAL_DRAWER';
+export const CLOSE_GOAL_DRAWER = 'CLOSE_GOAL_DRAWER';
+export const UPDATE_GOAL_PROPS = 'UPDATE_GOAL_PROPS';
+
+// Delete Goal
+export const DELETE_GOAL = 'DELETE_GOAL';
+
+export const GOALS_LOADING = 'GOALS_LOADING';
+
+
+

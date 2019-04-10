@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  addHabit,
-  closeHabitDrawer,
-  updateHabitProp
-} from "../../actions/habitActions";
-import { Drawer, Form, Button, Input, Icon, Select } from "antd";
+  addGoal,
+  closeGoalDrawer,
+  updateGoalProp
+} from "../actions/goalActions";
+import { Drawer, Form, Button, Input, Icon, Select, Checkbox } from "antd";
 import PropTypes from "prop-types";
 
 const Option = Select.Option;
@@ -13,14 +13,16 @@ const Option = Select.Option;
 const connectorList = ['Before', 'After'];
 
 
-const NewHabitForm = Form.create({
+const NewGoalForm = Form.create({
   name: "global_state",
   onFieldsChange(props, changedFields) {
     changedFields.title = props.title;
     changedFields.description = props.description;
     changedFields.reward = props.reward;
-    changedFields.linkObj = props.linkObj;
-    changedFields.connector = props.connector;
+    changedFields.specific = props.specific;
+    changedFields.measurable = props.measurable;
+    changedFields.achievable = props.achievable;
+    changedFields.timely = props.timely;
   },
   
   mapPropsToFields(props) {
@@ -34,11 +36,17 @@ const NewHabitForm = Form.create({
       reward: Form.createFormField({
         reward: props.reward
       }),
-      linkObj: Form.createFormField({
-        linkObj: props.linkObj,
+      specific: Form.createFormField({
+        specific: props.specific
       }),
-      connector: Form.createFormField({
-        connector: props.connector
+      measurable: Form.createFormField({
+        measurable: props.measurable
+      }),
+      achievable: Form.createFormField({
+        achievable: props.achievable
+      }),
+      timely: Form.createFormField({
+        timely: props.timely
       })
     };
   },
@@ -91,44 +99,27 @@ const NewHabitForm = Form.create({
         )}
       </Form.Item>
 
-      <Form.Item label="Link it into your routine:" ></Form.Item>
-      <Input.Group compact>
-      <Form.Item>
-        {getFieldDecorator("connector", {
-          initialValue: (false ? "Before" : "After"),
-          rules: [{ required: true, message: "A link is required!" }]
-          //LINKOBJ input
-        })(
-          <Select>
-            <Option value="Before">Before</Option>
-            <Option value="After">After</Option>
-          </Select>
-        )}
+      <Form.Item label="Alter your goal until you can confidently check these boxes:">
+          {getFieldDecorator("specific", {
+            rules: [{ required: true, message: "Your reward is not specific, change it before submitting..."}]
+          })(
+            <Checkbox>Specific</Checkbox>
+          )}
       </Form.Item>
-      <Form.Item compact>
-        {getFieldDecorator("linkObj", {
-          rules: [{ required: true, message: "A link is required!" }]
-          //LINKOBJ input
-        })(
-          <Input
-            style={{  top: "4px"}}
-            prefix={<Icon type="link" />}
-            placeholder="Describe where here..."
-          />
-        )}
-      </Form.Item>
-      </Input.Group>
     </Form>
   );
 });
 
-class HabitForm extends Component {
+class GoalForm extends Component {
   state = {
     title: "",
     description: "",
     reward: "",
-    linkObj: "",
-    connector: "",
+    specific: false,
+    measurable: false,
+    achievable: false,
+    timely: false,
+
   };
 
   handleFormChange = (changedFields) => {
@@ -137,12 +128,13 @@ class HabitForm extends Component {
     }))
   }
 
+
   handleSubmit = () => {
     this.form.validateFields((err, values) => {
       if(err) return;
       console.log(values);
-      this.props.addHabit(values);
-      this.props.closeHabitDrawer();
+      this.props.addGoal(values);
+      this.props.closeGoalDrawer();
     })
   }
 
@@ -152,20 +144,20 @@ class HabitForm extends Component {
 
     return (
       <Drawer
-        title="Add New Habit"
+        title="Add New Goal"
         placement="right"
-        onClose={this.props.closeHabitDrawer.bind(this)}
+        onClose={this.props.closeGoalDrawer.bind(this)}
         width="100%"
         visible={this.props.drawerOpen}
       >
-        <NewHabitForm {...fields} id="myForm" ref={(form) => this.form = form} onChange={this.handleFormChange} onSubmit={this.handleSubmit}/>
+        <NewGoalForm {...fields} id="myForm" ref={(form) => this.form = form} onChange={this.handleFormChange} onSubmit={this.handleSubmit}/>
         <Button
-          onClick={this.props.closeHabitDrawer.bind(this)}
+          onClick={this.props.closeGoalDrawer.bind(this)}
           style={{ marginRight: 8 }}
         >
           Cancel
         </Button>
-        <Button form="newHabitForm" onClick={this.handleSubmit} key="submit" htmlType="submit" type="primary">
+        <Button form="myForm" onClick={this.handleSubmit} key="submit" htmlType="submit" type="primary">
           Submit
         </Button>
       </Drawer>
@@ -173,17 +165,17 @@ class HabitForm extends Component {
   }
 }
 
-HabitForm.propTypes = {
-  addHabit: PropTypes.func.isRequired,
-  closeHabitDrawer: PropTypes.func.isRequired,
-  updateHabitProp: PropTypes.func.isRequired
+GoalForm.propTypes = {
+  addGoal: PropTypes.func.isRequired,
+  closeGoalDrawer: PropTypes.func.isRequired,
+  updateGoalProp: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  newhabit: state.newhabit
+  newgoal: state.newgoal
 });
 
 export default connect(
   mapStateToProps,
-  { addHabit, closeHabitDrawer, updateHabitProp }
-)(HabitForm);
+  { addGoal, closeGoalDrawer, updateGoalProp }
+)(GoalForm);
