@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteHabit } from '../../actions/habitActions';
+import { deleteHabit} from '../../actions/habitActions';
 import PropTypes from 'prop-types';
-import { Card, Icon, Dropdown, Menu, Button } from 'antd';
+import { Card, Icon, Tooltip, Button, Popover } from 'antd';
 
 const { Meta } = Card;
 
@@ -18,25 +18,30 @@ class HabitCard extends Component{
     return(
     <Card
       key={this.props.key}
-      title={this.props.title}
+      title=
+      {[
+      <Popover key="1" content={this.props.reward} title="Reward for completion:">
+        <Button shape="circle" size="small" icon="gift" />
+      </Popover>,
+      "  ",
+      this.props.title
+      ]}
       extra=
         {
-          <Dropdown 
-            overlay=
-              {
-                <Menu>
-                  <Menu.Item>Edit</Menu.Item>
-                  <Menu.Item onClick={this.onDeleteClick.bind(this, this.props.id)}>Delete</Menu.Item>
-                </Menu>
-              }
-            trigger={['click']}><Icon type="more" /></Dropdown>
+          <Icon
+            type="star"
+            />
         }
       size="small"
       cover={<img src="https://cdn-images-1.medium.com/max/2600/1*TsiGnufi7Y8tgJRLx8zipg.jpeg" />}
-      actions={[<Icon type="rise" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
+      actions=
+      {[
+        <Icon key="1" type="rise" />,
+        <Icon key="2" type="edit" />,
+        <Tooltip placement="top" title="Delete"><Icon type="delete"  onClick={() => this.onDeleteClick(this, this.props.id)}/></Tooltip> 
+      ]}
       hoverable={true}>
       <Meta 
-        title={[<Button shape="circle" size="small" icon="gift" />, " ", this.props.reward]}
         description={this.props.description}
       />
     </Card>

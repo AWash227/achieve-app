@@ -12,21 +12,6 @@ class Dashboard extends Component{
 
 
   render(){
-    
-    const habits = this.props.habit.habits.map((c) => 
-      <div key={c._id.toString()}>
-          
-        <HabitCard 
-          key={c.key} 
-          id={c._id}
-          title={c.title}
-          description={c.description}
-          reward={c.reward}
-          complete={c.complete}
-          link={c.link}
-          simplify={c.simplify} />
-      </div>
-    )
     return(
       <Layout style={{margin: "8px"}}>
         <List
@@ -35,16 +20,16 @@ class Dashboard extends Component{
           }} 
           dataSource={this.props.habit.habits}
           renderItem={habit => (
-            <List.Item>
+            <List.Item key={habit._id}>
               <HabitCard
-                key={habit.key} 
                 id={habit._id}
                 title={habit.title}
                 description={habit.description}
                 reward={habit.reward}
                 complete={habit.complete}
                 link={habit.link}
-                simplify={habit.simplify} />
+                simplify={habit.simplify}
+                />
             </List.Item>
           )}
         >

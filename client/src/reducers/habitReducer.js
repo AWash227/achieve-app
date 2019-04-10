@@ -5,7 +5,7 @@ import {
   HABITS_LOADING,
   OPEN_HABIT_DRAWER,
   CLOSE_HABIT_DRAWER,
-  UPDATE_HABIT_PROPS
+  UPDATE_HABIT_PROPS,
 } from '../actions/types';
 const initialState = {
   habits: [],
@@ -15,7 +15,7 @@ const initialState = {
     reward: "",
     complete: false,
     linkObj: "",
-    connector: ""
+    connector: "",
   },
   loading: false,
   drawerOpen: false

@@ -5,7 +5,7 @@ import {
   HABITS_LOADING,
   OPEN_HABIT_DRAWER,
   CLOSE_HABIT_DRAWER,
-  UPDATE_HABIT_PROPS
+  UPDATE_HABIT_PROPS,
 } from "./types";
 import axios from 'axios';
 
@@ -88,10 +88,9 @@ export const updateHabitProp = (title, description, reward, linkObj, connector )
         description: description,
         reward: reward,
         complete: false,
-        link: {
-          linkObj: linkObj,
-          connector: connector
-        }
+        linkObj: linkObj,
+        connector: connector,
+        favorited: false
       }
   })
 }

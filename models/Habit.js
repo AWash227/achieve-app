@@ -24,7 +24,7 @@ const HabitSchema = Schema({
   connector: {
     type: String,
     required: true
-  }
+  },
 })
 
 const Habit = mongoose.model("habit", HabitSchema);
