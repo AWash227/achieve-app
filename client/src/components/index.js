@@ -6,6 +6,7 @@ import HabitForm from './HabitForm';
 import HabitList from './HabitList';
 //GOALS
 import GoalCard from './GoalCard';
+import GoalForm from './GoalForm';
 
 export {
   Navigation,
@@ -13,5 +14,6 @@ export {
   Header,
   HabitForm,
   GoalCard,
+  GoalForm,
   HabitList
 }

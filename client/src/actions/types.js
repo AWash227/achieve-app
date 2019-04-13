@@ -35,4 +35,12 @@ export const DELETE_GOAL = 'DELETE_GOAL';
 export const GOALS_LOADING = 'GOALS_LOADING';
 
 
+// VIEW goals
+export const GET_GOAL_VIEW = 'GET_GOAL_VIEW';
+export const GET_GOAL_VIEW_REQUEST = 'GET_GOAL_VIEW_REQUEST';
+export const RECV_GOAL_VIEW_SUCCESS = 'GET_GOAL_VIEW_SUCCESS';
+export const GET_GOAL_VIEW_ERROR = 'GET_GOAL_VIEW_ERROR';
+
+export const CLOSE_GOAL_VIEW = 'CLOSE_GOAL_VIEW';
+
 

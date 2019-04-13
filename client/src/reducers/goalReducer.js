@@ -5,7 +5,9 @@ import {
   GOALS_LOADING,
   OPEN_GOAL_DRAWER,
   CLOSE_GOAL_DRAWER,
-  UPDATE_GOAL_PROPS
+  UPDATE_GOAL_PROPS,
+  GET_GOAL_VIEW,
+  CLOSE_GOAL_VIEW
 } from '../actions/types';
 const initialState = {
   goals: [],
@@ -19,8 +21,10 @@ const initialState = {
     achievable: false,
     timely: false
   },
+  selectedGoal: {},
   loading: false,
-  drawerOpen: false
+  drawerOpen: false,
+  visible: false
 }
 
 const debug = true;
@@ -71,7 +75,21 @@ export default function(state = initialState, action) {
     case UPDATE_GOAL_PROPS:
       return{
         ...state, newGoal: action.payload
+        }
+    case GET_GOAL_VIEW:
+      console.log('Goal received:');
+      console.log(action.payload);
+      return{
+        ...state,
+        selectedGoal: action.payload,
+        visible: true
       }
+    case CLOSE_GOAL_VIEW:
+      return{
+      ...state,
+      selectedGoal: {},
+      visible: false
+    }
     // DEFAULT
     default:
       return state;

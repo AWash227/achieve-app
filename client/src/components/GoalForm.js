@@ -58,7 +58,7 @@ const NewGoalForm = Form.create({
   return (
     <Form>
       {/* Title Input */}
-      <Form.Item label="Name Your Habit:">
+      <Form.Item label="Name Your Goal:">
         {getFieldDecorator("title", {
           // UI verification
           rules: [{ required: true, message: "Title is required!" }]
@@ -101,10 +101,35 @@ const NewGoalForm = Form.create({
 
       <Form.Item label="Alter your goal until you can confidently check these boxes:">
           {getFieldDecorator("specific", {
-            rules: [{ required: true, message: "Your reward is not specific, change it before submitting..."}]
+            rules: [{ required: true, message: "Your goal is not specific, change it before submitting..."}]
           })(
             <Checkbox>Specific</Checkbox>
           )}
+      </Form.Item>
+
+      <Form.Item>
+        {getFieldDecorator("measurable", {
+          rules: [{ required: true, message: "Your goal is not measurable, consider adding a metric to your goal."}]
+        })(
+          <Checkbox>Measurable</Checkbox>
+        )}
+      </Form.Item>
+
+      <Form.Item>
+        {getFieldDecorator("achievable", {
+          rules: [{ required: true, message: "Your goal is not achievable, consider making it a little less difficult."}]
+        })(
+          <Checkbox>Achievable</Checkbox>
+        )}
+      </Form.Item>
+
+
+      <Form.Item>
+        {getFieldDecorator("timely", {
+          rules: [{ required: true, message: "Your goal is not timely, consider setting a date for it."}]
+        })(
+          <Checkbox>Timely</Checkbox>
+        )}
       </Form.Item>
     </Form>
   );

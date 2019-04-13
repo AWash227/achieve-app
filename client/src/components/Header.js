@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { PageHeader, Button } from 'antd';
-import { HabitForm } from '../components';
+import { HabitForm, GoalForm } from '../components';
 import { connect } from 'react-redux';
-import { openHabitDrawer } from '../actions/habitActions';
+import { openHabitDrawer,  } from '../actions/habitActions';
+import { openGoalDrawer } from '../actions/goalActions';
 import PropTypes from 'prop-types';
 
 class Header extends Component {
@@ -13,20 +14,21 @@ class Header extends Component {
       <PageHeader 
         onBack={() => null}
         title="Main"
-        extra={<Button key="1" type="primary" onClick={() => this.props.openHabitDrawer()}>Add Habit</Button>}
+        extra={<Button key="1" type="primary" onClick={() => this.props.openGoalDrawer()}>Add Habit</Button>}
       />
-      <HabitForm drawerOpen={this.props.habit.drawerOpen} drawerClose={this.props.habit.drawerClose}/>
+      <GoalForm drawerOpen={this.props.goal.drawerOpen} drawerClose={this.props.goal.drawerClose}/>
       </div>
     )
   }
 }
 
 Header.propTypes = {
-  openHabitDrawer: PropTypes.func.isRequired
+  openHabitDrawer: PropTypes.func.isRequired,
+  openGoalDrawer: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  habit: state.habit
+  goal: state.goal
 })
 
-export default connect(mapStateToProps, { openHabitDrawer })(Header);
+export default connect(mapStateToProps, { openHabitDrawer, openGoalDrawer })(Header);
