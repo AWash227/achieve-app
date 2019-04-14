@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PageHeader, Button } from 'antd';
-import { GoalForm, AppDrawer } from '../components';
+import { GoalForm } from '../components';
 import { connect } from 'react-redux';
 import { openDrawer } from '../actions/appActions';
 import PropTypes from 'prop-types';
@@ -17,7 +17,6 @@ class Header extends Component {
         title="Main"
         extra={<Button key="1" type="primary" onClick={this.props.openDrawer.bind(this, "Goal")}>Add Goal</Button>}
       />
-      <AppDrawer title={"Add " + this.props.app.formType} />
       </div>
     )
   }

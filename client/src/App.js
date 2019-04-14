@@ -15,7 +15,6 @@ export default class extends Component{
     <Provider store={store}>
     <Router>
       <Route path="/" component={Dashboard} />
-      <Route path="/card/:id" component={Goal} />
     </Router>
     </Provider>
     )

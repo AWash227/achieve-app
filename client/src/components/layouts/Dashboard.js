@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import { Layout, List } from 'antd';
-import  GoalCard  from '../GoalCard'
+import  GoalCard  from '../GoalCard';
 import GoalForm from '../GoalForm';
 import AppDrawer from '../AppDrawer';
 import Navigation from '../Navigation';
@@ -44,6 +44,7 @@ class Dashboard extends Component{
               </List>
             </Layout>
           </Layout>
+          <AppDrawer title={"Add " + this.props.app.formType} />
         </Fragment>
     )
   }
@@ -51,11 +52,11 @@ class Dashboard extends Component{
 
 Dashboard.propTypes = {
   getGoals: PropTypes.func.isRequired,
-  goal: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  goal: state.goal
+  goal: state.goal,
+  app: state.app
 })
 
 export default connect(mapStateToProps, { getGoals })(Dashboard);
