@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import {
   addHabit,
-  closeHabitDrawer,
   updateHabitProp
 } from "../actions/habitActions";
+import {
+  closeDrawer
+} from '../actions/appActions';
 import { Drawer, Form, Button, Input, Icon, Select } from "antd";
 import PropTypes from "prop-types";
 
@@ -142,7 +144,7 @@ class HabitForm extends Component {
       if(err) return;
       console.log(values);
       this.props.addHabit(values);
-      this.props.closeHabitDrawer();
+      this.props.closeDrawer();
     })
   }
 
@@ -151,16 +153,10 @@ class HabitForm extends Component {
     const fields = this.state.fields;
 
     return (
-      <Drawer
-        title="Add New Habit"
-        placement="right"
-        onClose={this.props.closeHabitDrawer.bind(this)}
-        width="100%"
-        visible={this.props.drawerOpen}
-      >
+      <Fragment>
         <NewHabitForm {...fields} id="myForm" ref={(form) => this.form = form} onChange={this.handleFormChange} onSubmit={this.handleSubmit}/>
         <Button
-          onClick={this.props.closeHabitDrawer.bind(this)}
+          onClick={this.props.closeDrawer.bind(this)}
           style={{ marginRight: 8 }}
         >
           Cancel
@@ -168,14 +164,14 @@ class HabitForm extends Component {
         <Button form="newHabitForm" onClick={this.handleSubmit} key="submit" htmlType="submit" type="primary">
           Submit
         </Button>
-      </Drawer>
+      </Fragment>
     );
   }
 }
 
 HabitForm.propTypes = {
   addHabit: PropTypes.func.isRequired,
-  closeHabitDrawer: PropTypes.func.isRequired,
+  closeDrawer: PropTypes.func.isRequired,
   updateHabitProp: PropTypes.func.isRequired
 };
 
@@ -185,5 +181,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addHabit, closeHabitDrawer, updateHabitProp }
+  { addHabit, closeDrawer, updateHabitProp }
 )(HabitForm);

@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Modal, Popover, Button, List} from 'antd';
 import { closeGoal } from '../../actions/goalActions';
+import { getHabits } from '../../actions/habitActions';
+import { openDrawer } from '../../actions/appActions';
 import HabitCard from '../HabitCard';
 
 class Goal extends Component {
@@ -20,7 +22,8 @@ class Goal extends Component {
   render(){
     return(
       <Modal
-        title={[
+        title=
+          {[
             <Popover
               key="1"
               content={this.props.goal.selectedGoal.reward}
@@ -28,7 +31,9 @@ class Goal extends Component {
             >
               <Button shape="circle" size="small" icon="gift" />
             </Popover>,"  ",
-          this.props.goal.selectedGoal.title]}
+            this.props.goal.selectedGoal.title,
+            <Button key="2" type="primary" onClick={ this.props.openDrawer.bind(this, "Habit")}>Add Habit</Button>
+          ]}
         visible={ this.props.goal.visible }
         width={"100%"}
         onOk={this.handleOk}
@@ -60,15 +65,18 @@ class Goal extends Component {
   }
 }
 Goal.propTypes = {
-  closeGoal: PropTypes.func.isRequired
+  closeGoal: PropTypes.func.isRequired,
+  openDrawer: PropTypes.func.isRequired,
+  getHabits: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   goal: state.goal,
-  habit: state.habit
+  habit: state.habit,
+  app: state.app
 });
 
 export default connect(
   mapStateToProps,
-  { closeGoal }
+  { closeGoal, openDrawer, getHabits }
 )(Goal);

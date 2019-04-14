@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import { Layout, List } from 'antd';
 import  GoalCard  from '../GoalCard'
 import GoalForm from '../GoalForm';
+import AppDrawer from '../AppDrawer';
 import Navigation from '../Navigation';
 import Header from '../Header';
 import { connect } from 'react-redux';
@@ -41,7 +42,6 @@ class Dashboard extends Component{
               >
 
               </List>
-            <GoalForm />
             </Layout>
           </Layout>
         </Fragment>

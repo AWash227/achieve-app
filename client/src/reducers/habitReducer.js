@@ -18,7 +18,6 @@ const initialState = {
     connector: "",
   },
   loading: false,
-  drawerOpen: false
 }
 
 const debug = true;

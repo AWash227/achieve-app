@@ -43,4 +43,8 @@ export const GET_GOAL_VIEW_ERROR = 'GET_GOAL_VIEW_ERROR';
 
 export const CLOSE_GOAL_VIEW = 'CLOSE_GOAL_VIEW';
 
+// APP types
+export const OPEN_DRAWER = 'OPEN_DRAWER';
+export const CLOSE_DRAWER = 'CLOSE_DRAWER';
+
 

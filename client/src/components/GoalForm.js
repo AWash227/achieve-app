@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import {
   addGoal,
-  closeGoalDrawer,
   updateGoalProp
 } from "../actions/goalActions";
+import { closeDrawer } from '../actions/appActions';
 import { Drawer, Form, Button, Input, Icon, Select, Checkbox } from "antd";
 import PropTypes from "prop-types";
 
@@ -159,7 +159,7 @@ class GoalForm extends Component {
       if(err) return;
       console.log(values);
       this.props.addGoal(values);
-      this.props.closeGoalDrawer();
+      this.props.closeDrawer();
     })
   }
 
@@ -168,16 +168,10 @@ class GoalForm extends Component {
     const fields = this.state.fields;
 
     return (
-      <Drawer
-        title="Add New Goal"
-        placement="right"
-        onClose={this.props.closeGoalDrawer.bind(this)}
-        width="100%"
-        visible={this.props.drawerOpen}
-      >
+      <Fragment>
         <NewGoalForm {...fields} id="myForm" ref={(form) => this.form = form} onChange={this.handleFormChange} onSubmit={this.handleSubmit}/>
         <Button
-          onClick={this.props.closeGoalDrawer.bind(this)}
+          onClick={this.props.closeDrawer.bind(this)}
           style={{ marginRight: 8 }}
         >
           Cancel
@@ -185,14 +179,14 @@ class GoalForm extends Component {
         <Button form="myForm" onClick={this.handleSubmit} key="submit" htmlType="submit" type="primary">
           Submit
         </Button>
-      </Drawer>
+      </Fragment>
     );
   }
 }
 
 GoalForm.propTypes = {
   addGoal: PropTypes.func.isRequired,
-  closeGoalDrawer: PropTypes.func.isRequired,
+  closeDrawer: PropTypes.func.isRequired,
   updateGoalProp: PropTypes.func.isRequired
 };
 
@@ -202,5 +196,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addGoal, closeGoalDrawer, updateGoalProp }
+  { addGoal, closeDrawer, updateGoalProp }
 )(GoalForm);

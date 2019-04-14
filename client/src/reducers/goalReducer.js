@@ -21,9 +21,9 @@ const initialState = {
     achievable: false,
     timely: false
   },
+  habits: [],
   selectedGoal: {},
   loading: false,
-  drawerOpen: false,
   visible: false
 }
 

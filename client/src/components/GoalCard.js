@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteGoal, renderGoal } from "../actions/goalActions";
+import { getHabits } from '../actions/habitActions';
 import PropTypes from "prop-types";
 import { Card, Icon, Tooltip, Button, Popover } from "antd";
 import {
@@ -18,6 +19,7 @@ class GoalCard extends Component {
   };
 
   onGoalClick = goal => {
+    this.props.getHabits();
     this.props.renderGoal(goal);
     return(
     <Goal width="100%"/>
@@ -28,7 +30,6 @@ class GoalCard extends Component {
 
   render = () => (
     <Router>
-      <Link to="/card/">
         <Card
           key={this.props.key}
           title={[
@@ -40,7 +41,7 @@ class GoalCard extends Component {
               <Button shape="circle" size="small" icon="gift" />
             </Popover>,
             "  ",
-            this.props.title,
+            this.props.title
           ]}
           extra={<Icon type="star" />}
           size="small"
@@ -76,7 +77,6 @@ class GoalCard extends Component {
         >
           <Meta description={this.props.description} />
         </Card>
-      </Link>
 
       <Route path="/card/" component={Goal} />
 
@@ -86,14 +86,16 @@ class GoalCard extends Component {
 
 GoalCard.propTypes = {
   deleteGoal: PropTypes.func.isRequired,
-  renderGoal: PropTypes.func.isRequired
+  renderGoal: PropTypes.func.isRequired,
+  getHabits: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  goal: state.goal
+  goal: state.goal,
+  habit: state.habit
 });
 
 export default connect(
   mapStateToProps,
-  { deleteGoal, renderGoal }
+  { deleteGoal, renderGoal, getHabits }
 )(GoalCard);

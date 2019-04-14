@@ -8,6 +8,9 @@ import HabitList from './HabitList';
 import GoalCard from './GoalCard';
 import GoalForm from './GoalForm';
 
+//APP
+import AppDrawer from './AppDrawer';
+
 export {
   Navigation,
   HabitCard,
@@ -15,5 +18,6 @@ export {
   HabitForm,
   GoalCard,
   GoalForm,
-  HabitList
+  HabitList,
+  AppDrawer
 }
