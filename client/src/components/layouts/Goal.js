@@ -30,7 +30,7 @@ class Goal extends Component {
             </Popover>,"  ",
           this.props.goal.selectedGoal.title]}
         visible={ this.props.goal.visible }
-        width={ this.props.width  }
+        width={"100%"}
         onOk={this.handleOk}
         onCancel={this.handleCancel}>
           
