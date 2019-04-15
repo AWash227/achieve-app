@@ -46,7 +46,7 @@ class Dashboard extends Component{
             </Layout>
           </Layout>
           <AppDrawer title={"Add " + this.props.app.formType} />
-          <CardModal visible={this.props.app.modalOpen}/>
+          <CardModal visible={this.props.modalOpen}/>
         </Fragment>
     )
   }

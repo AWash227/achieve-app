@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { deleteGoal, renderGoal, selectGoal } from "../actions/goalActions";
 import { getHabits } from '../actions/habitActions';
@@ -23,18 +23,18 @@ class GoalCard extends Component {
 
   onGoalClick = () => {
     console.log("GOAL HAS BEEN CLICKED");
-    console.log(this.props.app.modalOpen)
     this.props.selectGoal.bind(this.props.goal.goals, this.props.id);
-    this.props.openModal.bind(this)
-    console.log(this.props.app.modalOpen);
+    this.props.openModal()
   }
   render = () => (
+      <div
+      onClick={this.onGoalClick.bind(this)} 
+      >
         <Card
           key={this.props.key}
           title={[
             <Popover
-              key="1"
-              content={this.props.reward}
+              key="1" content={this.props.reward}
               title="Reward for completion:"
             >
               <Button shape="circle" size="small" icon="gift" />
@@ -58,10 +58,10 @@ class GoalCard extends Component {
             </Tooltip>
           ]}
           hoverable={true}
-          onClick={this.onGoalClick}
         >
           <Meta description={this.props.description} />
         </Card>
+      </div>
   );
 }
 

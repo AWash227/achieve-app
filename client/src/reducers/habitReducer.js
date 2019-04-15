@@ -18,6 +18,7 @@ const initialState = {
     connector: "",
   },
   loading: false,
+  modalOpen: false
 }
 
 const debug = true;

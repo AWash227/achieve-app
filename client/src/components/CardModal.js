@@ -11,22 +11,22 @@ class CardModal extends Component {
 
   handleOk = (e) => {
     console.log(e);
-    this.props.closeModal.bind(this);
+    this.props.closeModal();
   }
 
   handleCancel = (e) => {
     console.log(e);
-    this.props.closeModal.bind(this);
+    this.props.closeModal();
   }
 
   render(){
     return(
       <Modal
-        visible={this.props.visible}
+        visible={this.props.app.modalOpen}
         width={"100%"}
-        onClose={this.props.closeModal.bind(this)}
-        onOk={() => this.handleOk}
-        onCancel={() => this.handleCancel}>
+        onClose={() => this.props.closeModal()}
+        onOk={() => this.handleOk(this)}
+        onCancel={() => this.handleCancel(this)}>
       </Modal>
     )
   }

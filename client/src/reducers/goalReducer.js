@@ -25,7 +25,8 @@ const initialState = {
   habits: [],
   selectedGoal: {},
   loading: false,
-  visible: false
+  visible: false,
+
 }
 
 const debug = true;
@@ -94,7 +95,7 @@ export default function(state = initialState, action) {
     case SELECT_GOAL:
       return{
       ...state,
-      selectedGoal: action.payload,
+      selectedGoal: action.payload
     }
     // DEFAULT
     default:
