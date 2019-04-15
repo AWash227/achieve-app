@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteGoal, renderGoal } from "../actions/goalActions";
+import { deleteGoal, renderGoal, selectGoal } from "../actions/goalActions";
 import { getHabits } from '../actions/habitActions';
+import { openModal } from '../actions/appActions';
 import PropTypes from "prop-types";
 import { Card, Icon, Tooltip, Button, Popover } from "antd";
 import {
@@ -9,27 +10,25 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import { Goal } from "./layouts";
+import CardModal from "./CardModal";
 
 const { Meta } = Card;
 
+
 class GoalCard extends Component {
-  onDeleteClick = _id => {
-    this.props.deleteGoal(_id);
+
+  onDeleteClick = () => {
+    this.props.deleteGoal(this.props.id);
   };
 
-  onGoalClick = goal => {
-    this.props.getHabits();
-    this.props.renderGoal(goal);
-    return(
-    <Goal width="100%"/>
-    )
-    
-
+  onGoalClick = () => {
+    console.log("GOAL HAS BEEN CLICKED");
+    console.log(this.props.app.modalOpen)
+    this.props.selectGoal.bind(this.props.goal.goals, this.props.id);
+    this.props.openModal.bind(this)
+    console.log(this.props.app.modalOpen);
   }
-
   render = () => (
-    <Router>
         <Card
           key={this.props.key}
           title={[
@@ -59,43 +58,28 @@ class GoalCard extends Component {
             </Tooltip>
           ]}
           hoverable={true}
-          onClick={() => this.onGoalClick
-            (            
-             {
-             
-               title: this.props.title,
-               description: this.props.description,
-               id: this.props.id,
-               reward: this.props.reward,
-               complete: this.props.complete,
-               specific: this.props.specific,
-               measurable: this.props.measurable,
-               achievable: this.props.achievable,
-               timely: this.props.timely
-             }
-            )}
+          onClick={this.onGoalClick}
         >
           <Meta description={this.props.description} />
         </Card>
-
-      <Route path="/card/" component={Goal} />
-
-    </Router>
   );
 }
 
 GoalCard.propTypes = {
   deleteGoal: PropTypes.func.isRequired,
   renderGoal: PropTypes.func.isRequired,
-  getHabits: PropTypes.func.isRequired
+  getHabits: PropTypes.func.isRequired,
+  selectGoal: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   goal: state.goal,
-  habit: state.habit
+  habit: state.habit,
+  app: state.app
 });
 
 export default connect(
   mapStateToProps,
-  { deleteGoal, renderGoal, getHabits }
+  { deleteGoal, renderGoal, getHabits, selectGoal, openModal }
 )(GoalCard);

@@ -7,7 +7,8 @@ import {
   CLOSE_GOAL_DRAWER,
   UPDATE_GOAL_PROPS,
   GET_GOAL_VIEW,
-  CLOSE_GOAL_VIEW
+  CLOSE_GOAL_VIEW,
+  SELECT_GOAL
 } from '../actions/types';
 const initialState = {
   goals: [],
@@ -89,6 +90,11 @@ export default function(state = initialState, action) {
       ...state,
       selectedGoal: {},
       visible: false
+    }
+    case SELECT_GOAL:
+      return{
+      ...state,
+      selectedGoal: action.payload,
     }
     // DEFAULT
     default:

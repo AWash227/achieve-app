@@ -7,7 +7,8 @@ import {
   CLOSE_GOAL_DRAWER,
   UPDATE_GOAL_PROPS,
   GET_GOAL_VIEW,
-  CLOSE_GOAL_VIEW
+  CLOSE_GOAL_VIEW,
+  SELECT_GOAL
 } from "./types";
 import axios from "axios";
 
@@ -139,4 +140,12 @@ export const closeGoal = () => dispatch => {
   dispatch({
     type: CLOSE_GOAL_VIEW
   })
+}
+export const selectGoal = (goals, id) => dispatch => {
+    let sGoal = goals.find(goal => goal._id === id)
+    console.log(sGoal)
+    dispatch({
+      type: SELECT_GOAL,
+      payload: sGoal
+    }) 
 }

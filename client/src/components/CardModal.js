@@ -2,72 +2,40 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Modal, Popover, Button, List} from 'antd';
-import { closeGoal } from '../../actions/goalActions';
-import { getHabits } from '../../actions/habitActions';
-import { openDrawer } from '../../actions/appActions';
-import HabitCard from '../HabitCard';
+import { getHabits } from '../actions/habitActions';
+import { openDrawer, openModal, closeModal } from '../actions/appActions';
+import HabitCard from './HabitCard';
+import GoalCard from './GoalCard';
 
 class CardModal extends Component {
 
   handleOk = (e) => {
     console.log(e);
-    this.props.closeGoal()
+    this.props.closeModal.bind(this);
   }
 
   handleCancel = (e) => {
     console.log(e);
-    this.props.closeGoal()
+    this.props.closeModal.bind(this);
   }
 
   render(){
     return(
       <Modal
-        title=
-          {[
-            <Popover
-              key="1"
-              content={this.props.goal.selectedGoal.reward}
-              title="Reward for completion:"
-            >
-              <Button shape="circle" size="small" icon="gift" />
-            </Popover>,"  ",
-            this.props.goal.selectedGoal.title,
-            <Button key="2" type="primary" onClick={ this.props.openDrawer.bind(this, "Habit")}>Add Habit</Button>
-          ]}
-        visible={ this.props.goal.visible }
+        visible={this.props.visible}
         width={"100%"}
-        onOk={this.handleOk}
-        onCancel={this.handleCancel}>
-          
-              <List
-                grid={{
-                  gutter: 8, xs: 1, sm: 2, md: 3, lg: 4, xl: 6, xxl: 6,
-                }} 
-                dataSource={this.props.habit.habits}
-                renderItem={goal => (
-                  <List.Item key={goal._id}>
-                    <HabitCard
-                      id={goal._id}
-                      title={goal.title}
-                      description={goal.description}
-                      reward={goal.reward}
-                      complete={goal.complete}
-                      link={goal.link}
-                      simplify={goal.simplify}
-                      />
-                  </List.Item>
-                )}
-              >
-
-              </List>
+        onClose={this.props.closeModal.bind(this)}
+        onOk={() => this.handleOk}
+        onCancel={() => this.handleCancel}>
       </Modal>
     )
   }
 }
 CardModal.propTypes = {
-  closeGoal: PropTypes.func.isRequired,
   openDrawer: PropTypes.func.isRequired,
-  getHabits: PropTypes.func.isRequired
+  getHabits: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -78,5 +46,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { closeGoal, openDrawer, getHabits }
+  {  openDrawer, getHabits, openModal, closeModal }
 )(CardModal);

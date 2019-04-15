@@ -22,6 +22,7 @@ export const GET_GOALS = 'GET_GOALS';
 export const GET_GOALS_REQUEST = 'GET_GOALS_REQUEST';
 export const GET_GOALS_SUCCESS = 'GET_GOALS_SUCCESS';
 export const GET_GOALS_ERROR = 'GET_GOALS_ERROR';
+export const SELECT_GOAL = 'SELECT_GOAL';
 
 // Add Goal
 export const ADD_GOAL = 'ADD_GOAL';
@@ -46,5 +47,7 @@ export const CLOSE_GOAL_VIEW = 'CLOSE_GOAL_VIEW';
 // APP types
 export const OPEN_DRAWER = 'OPEN_DRAWER';
 export const CLOSE_DRAWER = 'CLOSE_DRAWER';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 

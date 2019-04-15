@@ -1,11 +1,14 @@
 import {
   OPEN_DRAWER,
-  CLOSE_DRAWER
+  CLOSE_DRAWER,
+  OPEN_MODAL,
+  CLOSE_MODAL
 } from '../actions/types';
 
 const initialState = {
   drawerOpen: false,
-  formType: "Goal"
+  modalOpen: false,
+  formType: "Goal",
 }
 
 export default function(state=initialState, action) {
@@ -20,6 +23,16 @@ export default function(state=initialState, action) {
       return{
         ...state,
         drawerOpen: false,
+    }
+    case OPEN_MODAL:
+      return{
+        ...state,
+        modalOpen: true 
+    }
+    case CLOSE_MODAL:
+      return{
+        ...state,
+        modalOpen: false 
     }
     default:
       return state;

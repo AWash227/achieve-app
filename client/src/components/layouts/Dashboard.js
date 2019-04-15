@@ -5,6 +5,7 @@ import GoalForm from '../GoalForm';
 import AppDrawer from '../AppDrawer';
 import Navigation from '../Navigation';
 import Header from '../Header';
+import CardModal from '../CardModal';
 import { connect } from 'react-redux';
 import { getGoals } from '../../actions/goalActions';
 import PropTypes from 'prop-types';
@@ -45,6 +46,7 @@ class Dashboard extends Component{
             </Layout>
           </Layout>
           <AppDrawer title={"Add " + this.props.app.formType} />
+          <CardModal visible={this.props.app.modalOpen}/>
         </Fragment>
     )
   }
