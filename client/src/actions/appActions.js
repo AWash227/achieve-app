@@ -2,7 +2,8 @@ import {
   OPEN_DRAWER,
   CLOSE_DRAWER,
   OPEN_MODAL,
-  CLOSE_MODAL
+  CLOSE_MODAL,
+  GET_HABITS
 } from './types';
 
 const debug = true;

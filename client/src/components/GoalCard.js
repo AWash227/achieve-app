@@ -23,8 +23,10 @@ class GoalCard extends Component {
 
   onGoalClick = () => {
     console.log("GOAL HAS BEEN CLICKED");
-    this.props.selectGoal.bind(this.props.goal.goals, this.props.id);
-    this.props.openModal()
+    this.props.selectGoal(this.props.goal.goals, this.props.id);
+    this.props.getHabits();
+    this.props.openModal();
+
   }
   render = () => (
       <div
@@ -43,7 +45,7 @@ class GoalCard extends Component {
             this.props.title
           ]}
           extra={<Icon type="star" />}
-          size="small"
+          size={this.props.size || "small"}
           cover={
             <img src="https://cdn-images-1.medium.com/max/2600/1*TsiGnufi7Y8tgJRLx8zipg.jpeg" />
           }
@@ -57,7 +59,7 @@ class GoalCard extends Component {
               />
             </Tooltip>
           ]}
-          hoverable={true}
+          hoverable={this.props.hoverable || true}
         >
           <Meta description={this.props.description} />
         </Card>
